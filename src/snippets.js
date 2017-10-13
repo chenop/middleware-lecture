@@ -5,4 +5,3 @@ const log = ({getState, dispatch}) => next => action => {
 };
 
 export default log;
-
