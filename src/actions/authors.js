@@ -11,15 +11,4 @@ export const fetchAuthors = () => (dispatch) => {
 		.then(data => dispatch(setAuthors(data)));
 };
 
-// export const fetchAuthors = () => ({
-//   type: actions.API,
-//   payload: {
-//     url: 'api/authors.json',
-//     success: ({ entities }) => setAuthors(entities.authors),
-//     schema: [schema.authors],
-//     label: 'authors'
-//   },
-//   meta: {
-//     throttle: 2000
-//   }
-// });
+

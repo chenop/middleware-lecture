@@ -6,31 +6,41 @@ const log = ({getState, dispatch}) => next => action => {
 
 export default log;
 
-const api = ({ dispatch, getState }) => next => action => {
-
+const api = ({dispatch, getState}) => next => action => {
 	if (action.type !== actions.API) {
 		return next(action);
 	}
 
-	const { url, success, schema, label } = action.payload;
-
-	dispatch(startNetwork(label));
+	let {url, success} = action.payload;
 
 	fetch(url)
 		.then(response => response.json())
-		.then(data => {
-			if (schema) {
-				data = normalize(data, schema);
-			}
+		.then(data => dispatch(success(data)));
 
-			dispatch(success(data));
-
-			dispatch(endNetwork(label));
-		})
-		.catch(error => {
-			console.error(error);
-			dispatch(endNetwork(label))
-		})
+	return next(action);
 };
 
 export default api;
+
+export const fetchBooks = () => ({
+	type: actions.API,
+	payload: {
+		url: 'api/books.json',
+		success: setBooks
+	},
+	meta: {
+		throttle: 1000
+	}
+
+});
+
+export const fetchAuthors = () => ({
+	type: actions.API,
+	payload: {
+		url: 'api/authors.json',
+		success: setAuthors
+	}
+});
+
+
+store.dispatch({'MSG_ERROR', payload: 'show the toaster'})

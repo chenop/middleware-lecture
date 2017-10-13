@@ -11,19 +11,6 @@ export const fetchBooks = () => (dispatch) => {
 		.then(data => dispatch(setBooks(data)));
 };
 
-// export const fetchBooks = () => ({
-//   type: actions.API,
-//   payload: {
-//     url: 'api/books.json',
-//     schema: [schema.books],
-//     success: ({ entities }) => [
-//       setAuthors(entities.authors),
-//       setBooks(entities.books)
-//     ],
-//     label: 'books'
-//   }
-// });
-
 export const updateBook = (id, newName) => ({
 	type: actions.API,
 	payload: {

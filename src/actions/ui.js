@@ -2,10 +2,6 @@ import * as actions from 'consts/action-types';
 
 export const switchTheme = () => ({
 	type: actions.SWITCH_THEME,
-	meta: {
-		throttle: 1000,
-		analytics: "Change Theme"
-	}
 });
 
 export const startNetwork = (payload = 'global') => ({
