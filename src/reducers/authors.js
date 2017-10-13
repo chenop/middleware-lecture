@@ -1,9 +1,13 @@
-import { handleActions } from 'redux-actions';
-import Immutable from 'seamless-immutable';
 import * as actions from 'consts/action-types';
 
-const initialState = Immutable({});
+export default function authorsReducer(state = [], action) {
+	switch (action.type) {
+		case actions.SET_AUTHORS:
+			return [
+				...action.payload
+			];
+		default:
+			return state;
 
-export default handleActions({
-  [actions.SET_AUTHORS]: (authors, { payload }) => authors.merge(payload)
-}, initialState);
+	}
+}
